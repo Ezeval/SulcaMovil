@@ -3,24 +3,53 @@ package com.ezeval.sulcamovil;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    List<ListElement> elements;
     DrawerLayout drawerLayout;
+    TextView textViewLink;
+    TextView textViewUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         drawerLayout=findViewById(R.id.drawer_layout);
+        textViewLink = findViewById(R.id.txtEmpresaWebLink);
+        textViewUsuario = findViewById(R.id.txtNombreUsuario);
+        textViewUsuario.setText(GlobalInfo.GS_NOMBRE_USUARIO);
+        textViewLink.setMovementMethod(LinkMovementMethod.getInstance());
+        init();
+    }
+
+    public void init(){
+        elements=new ArrayList<>();
+        elements.add(new ListElement("#775447","Pedro","mexico","Activo"));
+        elements.add(new ListElement("#775447","Juan","mexico","Activo"));
+        elements.add(new ListElement("#775447","Luis","mexico","Activo"));
+        elements.add(new ListElement("#775447","Jose","mexico","Activo"));
+
+        ListAdapter listAdapter=new ListAdapter(elements,this);
+        RecyclerView recyclerView=findViewById(R.id.listRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(listAdapter);
+
     }
 
     public void ClickMenu(View view){

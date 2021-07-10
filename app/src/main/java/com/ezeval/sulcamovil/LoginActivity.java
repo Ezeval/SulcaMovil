@@ -77,8 +77,10 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         //showAlert("Usuario ok");
                         GlobalInfo.GS_USUARIO=idUsuario;
+                        GlobalInfo.GS_NOMBRE_USUARIO=us.getNombre()+" "+us.getApellido();
                         Intent intent= new Intent(context,MainActivity.class);
                         startActivity(intent);
+                        finish();
 
                     }
                 } catch (Exception ex) {
@@ -98,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
     private void showAlert(String mensaje) {
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
         builder.setMessage(mensaje)
-                .setTitle("Sulca")
+                .setTitle(GlobalInfo.GS_TITULO)
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // FIRE ZE MISSILES!

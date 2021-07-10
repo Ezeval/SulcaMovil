@@ -16,7 +16,8 @@
         <activity android:name=".AboutUs"></activity>
         <activity android:name=".Dashboard" />
         <activity
-            android:name=".MainActivity"/>
+            android:name=".MainActivity"
+            android:noHistory="true"/>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.Login" />
